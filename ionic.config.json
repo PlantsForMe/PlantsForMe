@@ -1,5 +1,7 @@
 {
   "name": "PlantsForMe",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

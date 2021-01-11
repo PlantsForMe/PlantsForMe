@@ -1,17 +1,383 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <ion-slides pager="true" [options]="slideOpts" #slides>
+    <ion-slide>
+      <ion-card class="swiper-no-swiping">
+        <ion-card-header>
+          <ion-card-subtitle>Licht</ion-card-subtitle>
+          <ion-card-title><h1>Dort wo deine Pflanze stehen soll...</h1></ion-card-title>
+        </ion-card-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-radio-group value="0" [(ngModel)]="questions[0]">
+              <ion-item>
+                <ion-label class="ion-text-wrap">hat sie den ganzen Tag direkte Sonne</ion-label>
+                <ion-radio slot="start" value="0"></ion-radio>
+              </ion-item>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+              <ion-item>
+                <ion-label class="ion-text-wrap">hat sie morgens Sonne</ion-label>
+                <ion-radio slot="start" value="1"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label class="ion-text-wrap">hat sie nachmittags Sonne</ion-label>
+                <ion-radio slot="start" value="2"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label class="ion-text-wrap">hat sie nur indirekt Sonne</ion-label>
+                <ion-radio slot="start" value="3"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label class="ion-text-wrap">ist es fast immer recht dunkel</ion-label>
+                <ion-radio slot="start" value="4"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label class="ion-text-wrap">kommt nie Licht hin</ion-label>
+                <ion-radio slot="start" value="5"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+
+          <ion-button (click)="nextSlide()" expand="full">Weiter</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card class="swiper-no-swiping">
+        <ion-card-header>
+          <ion-card-subtitle>Luftfeuchtigkeit</ion-card-subtitle>
+          <ion-card-title><h1>Weißt du, wie hoch die Luftfeuchtigkeit in dem Raum ist?</h1></ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list>
+            <ion-radio-group value="0" [(ngModel)]="questions[1]">
+              <ion-item>
+                <ion-label>Ja</ion-label>
+                <ion-radio slot="start" value="1"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Nein</ion-label>
+                <ion-radio slot="start" value="2"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+
+          <ion-list *ngIf="questions[1]==1">
+            <ion-item>
+              <ion-label class="ion-text-wrap" position="floating">Luftfeuchtigkeit</ion-label>
+              <ion-input class="percentInput" type="number" name="humidity" [(ngModel)]="humidity"></ion-input>
+            </ion-item>
+          </ion-list>
+
+          <ion-button (click)="nextSlide()" expand="full">Weiter</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide *ngIf="questions[1]==2">
+      <ion-card class="swiper-no-swiping">
+        <ion-card-header>
+          <ion-card-subtitle>Luftfeuchtigkeit</ion-card-subtitle>
+          <ion-card-title><h1>Hängst du deine Wäsche zum Trocknen in dem Raum auf?</h1></ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list>
+            <ion-radio-group value="0" [(ngModel)]="questions[3]">
+              <ion-item>
+                <ion-label>Ja</ion-label>
+                <ion-radio slot="start" value="0"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Nein</ion-label>
+                <ion-radio slot="start" value="1"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+
+          <ion-button (click)="nextSlide()" expand="full">Weiter</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide *ngIf="questions[1]==2">
+      <ion-card class="swiper-no-swiping">
+        <ion-card-header>
+          <ion-card-subtitle>Luftfeuchtigkeit</ion-card-subtitle>
+          <ion-card-title><h1>Hast du eine Souterrain Wohnung?</h1></ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list>
+            <ion-radio-group value="0" [(ngModel)]="questions[4]">
+              <ion-item>
+                <ion-label>Ja</ion-label>
+                <ion-radio slot="start" value="0"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Nein</ion-label>
+                <ion-radio slot="start" value="1"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+
+          <ion-button (click)="nextSlide()" expand="full">Weiter</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide *ngIf="questions[1]==2">
+      <ion-card class="swiper-no-swiping">
+        <ion-card-header>
+          <ion-card-subtitle>Luftfeuchtigkeit</ion-card-subtitle>
+          <ion-card-title><h1>Ist der Raum, in dem die Pflanze stehen soll, ein Bad?</h1></ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list>
+            <ion-radio-group value="0" [(ngModel)]="questions[5]">
+              <ion-item>
+                <ion-label>Ja</ion-label>
+                <ion-radio slot="start" value="0"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Nein</ion-label>
+                <ion-radio slot="start" value="1"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+
+          <ion-button (click)="nextSlide()" expand="full">Weiter</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide *ngIf="questions[1]==2">
+      <ion-card class="swiper-no-swiping">
+        <ion-card-header>
+          <ion-card-subtitle>Luftfeuchtigkeit</ion-card-subtitle>
+          <ion-card-title><h1>Hast du einen Ofen oder Kamin in dem Raum stehen?</h1></ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list>
+            <ion-radio-group value="0" [(ngModel)]="questions[6]">
+              <ion-item>
+                <ion-label>Ja</ion-label>
+                <ion-radio slot="start" value="0"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Nein</ion-label>
+                <ion-radio slot="start" value="1"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+
+          <ion-button (click)="nextSlide()" expand="full">Weiter</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card class="swiper-no-swiping">
+        <ion-card-header>
+          <ion-card-subtitle>Pflege</ion-card-subtitle>
+          <ion-card-title><h1>Wenn es um die Pflege deine Pflanze geht...</h1></ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list>
+            <ion-radio-group value="0" [(ngModel)]="questions[7]">
+              <ion-item>
+                <ion-label class="ion-text-wrap">sollte sie mich am besten gar nicht brauchen</ion-label>
+                <ion-radio slot="start" value="0"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label class="ion-text-wrap">bin ich da, wenn sie mich braucht</ion-label>
+                <ion-radio slot="start" value="1"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label class="ion-text-wrap">möchte ich sie ständig hegen und pflegen</ion-label>
+                <ion-radio slot="start" value="2"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+
+          <ion-button (click)="nextSlide()" expand="full">Weiter</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card class="swiper-no-swiping">
+        <ion-card-header>
+          <ion-card-subtitle>Temperatur</ion-card-subtitle>
+          <ion-card-title><h1>In dem Raum...</h1></ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list>
+            <ion-radio-group value="0" [(ngModel)]="questions[8]">
+              <ion-item>
+                <ion-label class="ion-text-wrap">Ist es immer warm (22°C +)</ion-label>
+                <ion-radio slot="start" value="0"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label class="ion-text-wrap">Ist es normal warm (18-22°C)</ion-label>
+                <ion-radio slot="start" value="1"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label class="ion-text-wrap">Ist es eher kühl (bis 18°C)</ion-label>
+                <ion-radio slot="start" value="2"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+
+          <ion-button (click)="nextSlide()" expand="full">Weiter</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card class="swiper-no-swiping">
+        <ion-card-header>
+          <ion-card-subtitle>Temperatur</ion-card-subtitle>
+          <ion-card-title><h1>Steht die Pflanze an einer Heizung?</h1></ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list>
+            <ion-radio-group value="0" [(ngModel)]="questions[9]">
+              <ion-item>
+                <ion-label>Ja</ion-label>
+                <ion-radio slot="start" value="0"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Nein</ion-label>
+                <ion-radio slot="start" value="1"></ion-radio>
+              </ion-item>
+
+            </ion-radio-group>
+          </ion-list>
+
+          <ion-button (click)="nextSlide()" expand="full">Weiter</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card class="swiper-no-swiping">
+        <ion-card-header>
+          <ion-card-subtitle>Sonstiges</ion-card-subtitle>
+          <ion-card-title><h1>Hast du freilaufende Haustiere?</h1></ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list>
+            <ion-radio-group value="0" [(ngModel)]="questions[10]">
+              <ion-item>
+                <ion-label>Ja</ion-label>
+                <ion-radio slot="start" value="1"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Nein</ion-label>
+                <ion-radio slot="start" value="2"></ion-radio>
+              </ion-item>
+
+            </ion-radio-group>
+          </ion-list>
+
+          <ion-list *ngIf="questions[10]==1">
+            <ion-radio-group value="0" [(ngModel)]="questions[11]">
+              <ion-item>
+                <ion-label>Katzen</ion-label>
+                <ion-radio slot="start" value="0"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Hunde</ion-label>
+                <ion-radio slot="start" value="1"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Kleintiere</ion-label>
+                <ion-radio slot="start" value="2"></ion-radio>
+              </ion-item>
+
+            </ion-radio-group>
+          </ion-list>
+
+          <ion-button (click)="getResult()" expand="full">Weiter</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide *ngIf="false">
+      <ion-card class="swiper-no-swiping">
+        <ion-card-header>
+          <ion-card-subtitle>Standort</ion-card-subtitle>
+          <ion-card-title><h1>Standort</h1></ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="floating">Breitengrad</ion-label>
+            <ion-input name="latitude" ngModel="{{latitude}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Längengrad</ion-label>
+            <ion-input name="longitude" ngModel="{{longitude}}"></ion-input>
+          </ion-item>
+
+          <ion-button (click)="nextSlide()" expand="full">Weiter</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide *ngIf="false">
+      <ion-card class="swiper-no-swiping">
+        <ion-card-header>
+          <ion-card-subtitle>Sensor</ion-card-subtitle>
+          <ion-card-title><h1>Lux / Luftfeuchtigkeit</h1></ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="floating">Lux</ion-label>
+            <ion-input name="lux" ngModel="{{lux}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Luftfeuchtigkeit</ion-label>
+            <ion-input name="humidity"></ion-input>
+          </ion-item>
+
+          <ion-button (click)="getResult()" expand="full">Ergebnis</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card class="swiper-no-swiping">
+        <img src="assets/plants/{{getResultImage()}}.jpeg" />
+        <ion-card-header>
+          <ion-card-subtitle>Ergebnis</ion-card-subtitle>
+          <ion-card-title><h1>Deine Pflanze ist: {{result[0]}}</h1></ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+
+          <ion-button *ngIf="false" (click)="reset()" expand="full">Zurücksetzen</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
