@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-buttons slot="primary">
+        <img alt="logo" id="header_logo" height="40" float-left src="assets/icon/favicon.png">
+      </ion-buttons>
+      <ion-title>PlantsForMe</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list *ngIf="plant[0] == null">
+        <div *ngFor ="let plantItem of plants; let i = index">
+            <ion-item href="tabs/tab3/{{plantItem?.id}}" detail>
+                <ion-avatar slot="start">
+                    <img src="assets/plants/{{getResultImages(i)}}.jpeg" />
+                </ion-avatar>
+                <ion-label class="ion-text-wrap">
+                    <h4>Pflanze</h4>
+                    <h1>{{plantItem?.name}}</h1>
+                    <p>{{getResultShortDescription(i)}}</p>
+                </ion-label>
+            </ion-item>
+        </div>
+    </ion-list>
+    <ion-card *ngIf="plant[0] != null">
+        <img src="assets/plants/{{getResultImage(0)}}.jpeg" />
+        <ion-card-header>
+        <ion-card-subtitle>Pflanze</ion-card-subtitle>
+        <ion-card-title><h1>{{plant[0]?.name}}</h1></ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+            {{plant[0]?.description}}
+        </ion-card-content>
+    </ion-card>
+  </ion-content>
+  

@@ -3,10 +3,24 @@ ion-slides {
   height: 100%;
 }
 
+
 ion-card {
   width: 100rem;
 }
 
+
 .percentInput:after {
     content: "%";
+}
+
+.swiper-scroll ion-list {
+  width: inherit;
+  max-width: 100rem;
+  height: inherit;
+  overflow-y: scroll;
+}
+
+ion-avatar { 
+  width: 10rem;  
+  height: 10rem;  
 }
